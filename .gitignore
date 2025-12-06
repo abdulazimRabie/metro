@@ -1,0 +1,59 @@
+# --- Build output ---
+/build/
+/cmake-build-debug/
+/cmake-build-release/
+/out/
+/bin/
+/lib/
+
+# --- CMake generated files ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+CTestTestfile.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+
+# --- Executables ---
+*.exe
+*.out
+*.app
+
+# --- IDE specific ---
+# CLion
+.idea/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# --- OS-specific ---
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# --- Logs ---
+*.log
+
+# --- Temporary files ---
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# --- C++ artifacts ---
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.dylib
+
+# --- Generated documentation ---
+/docs/html/
+/docs/latex/
