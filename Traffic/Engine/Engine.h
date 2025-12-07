@@ -5,9 +5,6 @@
 
 using namespace std;
 
-// ============================================
-// Enum for Engine Types
-// ============================================
 enum class EngineType {
     ELECTRIC,
     DIESEL,
@@ -15,9 +12,6 @@ enum class EngineType {
     MAGNETIC_LEVITATION
 };
 
-// ============================================
-// Helper Function - Convert Enum to String
-// ============================================
 inline string engineTypeToString(EngineType type) {
     switch(type) {
         case EngineType::ELECTRIC: 
@@ -33,9 +27,6 @@ inline string engineTypeToString(EngineType type) {
     }
 }
 
-// ============================================
-// Engine Class - Complete Implementation
-// ============================================
 class Engine {
 private:
     string model;
@@ -44,8 +35,7 @@ private:
     bool isRunning;
 
 public:
-    // Constructor
-    Engine(string model, int power, EngineType type = EngineType::ELECTRIC) 
+    Engine(string model, int power, EngineType type = EngineType::ELECTRIC)
         : model(model), type(type), isRunning(false) {
         if (power < 0) {
             throw invalid_argument("[Engine] Power cannot be negative");
@@ -55,13 +45,11 @@ public:
              << " engine (" << power << " HP) initialized: " << model << endl;
     }
 
-    // Destructor
     ~Engine() {
         cout << "[Engine] " << this->model << " " 
              << engineTypeToString(this->type) << " has been KILLED!" << endl;
     }
 
-    // Start engine
     void start() {
         if (!isRunning) {
             isRunning = true;
@@ -71,7 +59,6 @@ public:
         }
     }
 
-    // Stop engine
     void stop() {
         if (isRunning) {
             isRunning = false;
@@ -81,7 +68,6 @@ public:
         }
     }
 
-    // Getters
     string getModel() {
         return this->model;
     }
@@ -98,7 +84,6 @@ public:
         return this->isRunning;
     }
 
-    // Get complete status
     string getStatus() {
         string status = isRunning ? "Running" : "Stopped";
         return "[Engine] " + this->model + "-" + engineTypeToString(this->type) +

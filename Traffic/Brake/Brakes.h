@@ -3,9 +3,6 @@
 #include <iostream>
 using namespace std;
 
-// ============================================
-// Enum for Brake Types
-// ============================================
 enum class BrakeType {
     HYDRAULIC,
     PNEUMATIC,
@@ -14,9 +11,6 @@ enum class BrakeType {
     REGENERATIVE
 };
 
-// ============================================
-// Helper Function - Convert Enum to String
-// ============================================
 inline string brakeTypeToString(BrakeType b) {
     switch (b) {
         case BrakeType::HYDRAULIC:
@@ -34,9 +28,7 @@ inline string brakeTypeToString(BrakeType b) {
     }
 }
 
-// ============================================
-// Brake Class - Complete Implementation
-// ============================================
+
 class Brake {
 private:
     string model;
@@ -45,18 +37,16 @@ private:
     int brakeForce;
 
 public:
-    // Constructor
     Brake(string model, BrakeType type = BrakeType::HYDRAULIC) 
         : model(model), type(type), isEngaged(false), brakeForce(0) {
         cout << "[Brake] Brake system created: " << brakeTypeToString(this->type) << endl;
     }
 
-    // Destructor
     ~Brake() {
         cout << "[Brake] " << this->model << " Brake has been destructured!" << endl;
     }
 
-    // Apply brakes with force validation
+
     void apply(int force) {
         if (force < 0 || force > 100) {
             cout << "[Brake] " << this->model << " only force in this range [0-100]" << endl;
@@ -68,7 +58,6 @@ public:
         cout << "[Brake] " << this->model << " applied at " << force << "% force." << endl;
     }
 
-    // Release brakes
     void release() {
         if (this->engaged()) {
             this->brakeForce = 0;
@@ -79,13 +68,11 @@ public:
         }
     }
 
-    // Emergency stop
     void emergencyStop() {
         apply(100);
         cout << "[Brake] *** EMERGENCY BRAKE ACTIVATED for " << this->model << " ***" << endl;
     }
 
-    // Getters
     string getType() {
         return brakeTypeToString(this->type);
     }
@@ -102,7 +89,6 @@ public:
         return this->brakeForce;
     }
 
-    // Get complete status
     string getStatus() {
         string status = engaged() ? "Engaged" : "Released";
         return "[Brake] " + model + ", " + brakeTypeToString(type) + 

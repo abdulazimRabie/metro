@@ -7,9 +7,6 @@
 
 using namespace std;
 
-// ============================================
-// MaintenanceRecord Class
-// ============================================
 class MaintenanceRecord {
 private:
     string partName;
@@ -19,7 +16,6 @@ private:
     string technician;
 
 public:
-    // Constructor with validation
     MaintenanceRecord(string partName, double cost, string date,
                      string description = "", string technician = "N/A")
         : partName(partName), cost(cost), date(date),
@@ -36,7 +32,6 @@ public:
         }
     }
 
-    // Default constructor
     MaintenanceRecord()
         : partName("Unknown"), cost(0.0), date("N/A"),
           description(""), technician("N/A") {}
@@ -62,7 +57,6 @@ public:
         return technician;
     }
 
-    // Show single record in detailed format
     void showRecord() const {
         cout << "  +------------------------------------------" << endl;
         cout << "  | Part: " << partName << endl;
@@ -75,7 +69,6 @@ public:
         cout << "  +------------------------------------------" << endl;
     }
 
-    // Operator overloading for easy printing
     friend ostream& operator<<(ostream& os, const MaintenanceRecord& record) {
         os << "[" << record.date << "] " << record.partName
            << " - $" << fixed << setprecision(2) << record.cost

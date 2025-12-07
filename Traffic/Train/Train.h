@@ -21,7 +21,6 @@ protected:
     MaintenanceLog maintenanceLog;      // Composition
 
 public:
-    // Constructor
     Train(
         string trainID, int capacity,
         string engineModel, int enginePower, EngineType engineType,
@@ -37,34 +36,28 @@ public:
         cout << "========================================\n" << endl;
     }
 
-    // Destructor
     ~Train() {
         cout << "\n[Train] T-" << this->ID << " has been KILLED!" << endl;
     }
 
-    // Start the train
     void start() {
         cout << "\n[Train] Starting train T-" << this->ID << "..." << endl;
 
-        // Check maintenance status
         if (needsMaintenance) {
             cout << "[Train] WARNING: Train needs maintenance!" << endl;
             cout << "[Train] Starting anyway (not recommended)..." << endl;
         }
 
-        // Check if brakes are engaged
         if (brake.engaged()) {
             cout << "[Train] Cannot start! Brakes are still engaged." << endl;
             cout << "[Train] Releasing brakes first..." << endl;
             brake.release();
         }
 
-        // Start the engine
         engine.start();
         cout << "[Train] T-" << this->ID << " is now moving!!" << endl;
     }
 
-    // Stop the train
     void stop() {
         cout << "\n[Train] Stopping train T-" << this->ID << "..." << endl;
         brake.apply(100);
@@ -72,7 +65,6 @@ public:
         cout << "[Train] Train T-" << this->ID << " has stopped." << endl;
     }
 
-    // Gradual stop
     void gradualStop() {
         cout << "\n[Train] Gradual stop initiated for train T-" << this->ID << "..." << endl;
         brake.apply(30);
@@ -84,7 +76,6 @@ public:
         engine.stop();
     }
 
-    // Emergency stop
     void emergencyStop() {
         cout << "\n[Train] *** EMERGENCY STOP for train T-" << this->ID << " ***" << endl;
         brake.emergencyStop();
@@ -92,7 +83,6 @@ public:
         cout << "[Train] Emergency stop completed." << endl;
     }
 
-    // Simulate travel (increases mileage, might trigger maintenance)
     void travel(int distance) {
         if (distance <= 0) {
             cout << "[Train] Invalid distance!" << endl;
@@ -131,37 +121,30 @@ public:
         cout << "[Train] ========================================\n" << endl;
     }
 
-    // Quick maintenance (convenience method with auto date)
     void performQuickMaintenance(string partName, double cost, string technician = "N/A") {
         performMaintenance(partName, cost, "2024-12-06", "Regular maintenance", technician);
     }
 
-    // Show maintenance history
     void showMaintenanceHistory() {
         maintenanceLog.showAll();
     }
 
-    // Show maintenance summary
     void showMaintenanceSummary() {
         maintenanceLog.showSummary();
     }
 
-    // Show maintenance grouped by part
     void showMaintenanceByPart() {
         maintenanceLog.showByPart();
     }
 
-    // Export maintenance log
     void exportMaintenanceLog() {
         maintenanceLog.exportToText();
     }
 
-    // Check if maintenance is needed
     bool requiresMaintenance() const {
         return needsMaintenance;
     }
 
-    // Getters
     Engine getEngine() { return this->engine; }
     Brake getBrake() { return this->brake; }
     string getID() const { return this->ID; }
@@ -174,7 +157,6 @@ public:
         return maintenanceLog.getTotalCost();
     }
 
-    // Show complete train status
     void showStatus() {
         cout << "\n========================================" << endl;
         cout << "     TRAIN STATUS - T-" << this->ID << endl;

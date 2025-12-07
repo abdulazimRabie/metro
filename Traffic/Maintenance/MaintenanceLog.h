@@ -16,13 +16,11 @@ private:
     int nextRecordID;
 
 public:
-    // Constructor
     MaintenanceLog(string trainID = "Unknown") 
         : trainID(trainID), totalCost(0.0), nextRecordID(1) {
         cout << "[MaintenanceLog] Maintenance log initialized for Train: " << trainID << endl;
     }
 
-    // Add a maintenance record (aggregation - stores a copy)
     void addRecord(const MaintenanceRecord& record) {
         records.push_back(record);  // Copies the record
         totalCost += record.getCost();
@@ -33,14 +31,12 @@ public:
         nextRecordID++;
     }
 
-    // Add record with parameters (convenience method)
-    void addRecord(string partName, double cost, string date, 
+    void addRecord(string partName, double cost, string date,
                    string description = "", string technician = "N/A") {
         MaintenanceRecord record(partName, cost, date, description, technician);
         addRecord(record);
     }
 
-    // Show all maintenance records
     void showAll() const {
         cout << "\n============================================" << endl;
         cout << "  MAINTENANCE LOG - Train: " << trainID << endl;
@@ -64,22 +60,18 @@ public:
         cout << "============================================\n" << endl;
     }
 
-    // Get records count
     int getRecordCount() const {
         return records.size();
     }
 
-    // Get total cost
     double getTotalCost() const {
         return totalCost;
     }
 
-    // Get train ID
     string getTrainID() const {
         return trainID;
     }
 
-    // Get records by part name (search functionality)
     vector<MaintenanceRecord> getRecordsByPart(string partName) const {
         vector<MaintenanceRecord> result;
         for (const auto& record : records) {
@@ -90,7 +82,6 @@ public:
         return result;
     }
 
-    // Get records by technician
     vector<MaintenanceRecord> getRecordsByTechnician(string technician) const {
         vector<MaintenanceRecord> result;
         for (const auto& record : records) {
@@ -101,7 +92,6 @@ public:
         return result;
     }
 
-    // Get recent records (last N records)
     vector<MaintenanceRecord> getRecentRecords(int count) const {
         vector<MaintenanceRecord> result;
         int start = max(0, (int)records.size() - count);
@@ -111,7 +101,6 @@ public:
         return result;
     }
 
-    // Get most expensive maintenance
     MaintenanceRecord getMostExpensive() const {
         if (records.empty()) {
             throw runtime_error("[MaintenanceLog] No records available");
@@ -126,7 +115,6 @@ public:
         return mostExpensive;
     }
 
-    // Clear all records
     void clearLog() {
         records.clear();
         totalCost = 0.0;
@@ -134,7 +122,6 @@ public:
         cout << "[MaintenanceLog] All records cleared for Train " << trainID << endl;
     }
 
-    // Summary view (compact format)
     void showSummary() const {
         cout << "\n========================================" << endl;
         cout << "  MAINTENANCE SUMMARY - Train " << trainID << endl;
@@ -201,7 +188,6 @@ public:
         cout << "========================================\n" << endl;
     }
 
-    // Export records to simple text format
     void exportToText() const {
         cout << "\n=== MAINTENANCE LOG EXPORT ===" << endl;
         cout << "Train: " << trainID << endl;
